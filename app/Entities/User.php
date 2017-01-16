@@ -15,12 +15,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'resume', 'password'
+        'name',
+        'email',
+        'phone',
+        'resume',
+        'password'
     ];
 
     public function JobExperience()
     {
         return $this->hasMany(JobExperience::class, 'user_id', 'id');
+    }
+
+    public function Education()
+    {
+        return $this->hasMany(Education::class, 'user_id', 'id');
     }
 
     /**

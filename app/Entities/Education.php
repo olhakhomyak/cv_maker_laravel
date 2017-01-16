@@ -15,8 +15,4 @@ class Education extends Model
         'start_date',
         'end_date'
     ];
-
-    public function userEducation() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
 }
