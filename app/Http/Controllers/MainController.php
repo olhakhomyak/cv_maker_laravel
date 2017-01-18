@@ -32,4 +32,19 @@ class MainController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $content = json_decode($request['params']);
+
+        $data = [
+            'id' => $id,
+            'name' => ($content->name),
+            'email' => ($content->email),
+            'phone' => ($content->phone),
+            'resume' => ($content->resume)
+        ];
+
+       $this->mainRepository->updatePersonalData($data);
+    }
+
 }

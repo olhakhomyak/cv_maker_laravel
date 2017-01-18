@@ -30,7 +30,6 @@ class EducationController extends Controller
 
     public function destroy($id)
     {
-        logger($id);
         $this->mainRepo->removeSchool($id);
     }
 

@@ -42,4 +42,8 @@ class MainRepository
     public function removeSchool($id) {
         return $this->educationModel->destroy($id);
     }
+
+    public function updatePersonalData(array $attributes = []) {
+        return $this->model->fill($attributes);
+    }
 }
