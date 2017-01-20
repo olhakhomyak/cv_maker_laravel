@@ -34,17 +34,14 @@ class MainController extends Controller
 
     public function update(Request $request, $id)
     {
-        $content = json_decode($request['params']);
 
-        $data = [
-            'id' => $id,
-            'name' => ($content->name),
-            'email' => ($content->email),
-            'phone' => ($content->phone),
-            'resume' => ($content->resume)
-        ];
-
-       $this->mainRepository->updatePersonalData($data);
+        logger(json_decode($request, true));
+//        return User::find($id)->update($request->all());
+//        $user = User::findOrFail($id);
+//        $data = $request->all();
+//        $content = json_encode($request);
+//        print_r($content);
+//       return User::find($id)->update($request->all());
     }
 
 }
