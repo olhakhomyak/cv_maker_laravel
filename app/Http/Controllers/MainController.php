@@ -23,6 +23,7 @@ class MainController extends Controller
         return $user;
     }
 
+
     public function show($id)
     {
         $user = $this->mainRepository->getUser($id);
@@ -32,19 +33,27 @@ class MainController extends Controller
         ]);
     }
 
+
     public function update(Request $request, $id)
     {
         $content = json_decode($request['params']);
 
-        $data = [
-            'id' => $id,
-            'name' => ($content->name),
-            'email' => ($content->email),
-            'phone' => ($content->phone),
-            'resume' => ($content->resume)
-        ];
+        $data = [];
 
-       $this->mainRepository->updatePersonalData($data);
+        if (isset($content->name)) {
+            $data['name'] = $content->name;
+        }
+        if (isset($content->phone)) {
+            $data['phone'] = $content->phone;
+        }
+        if (isset($content->email)) {
+            $data['email'] = $content->email;
+        }
+        if (isset($content->resume)) {
+            $data['resume'] = $content->resume;
+        }
+
+       $this->mainRepository->updatePersonalData($data, $id);
     }
 
 }

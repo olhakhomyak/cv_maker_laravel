@@ -13,6 +13,7 @@ class MainRepository
     private $educationModel;
     private $jobExperienceModel;
 
+
     public function __construct(User $user, Education $education, JobExperience $jobExperience)
     {
         $this->model = $user;
@@ -20,30 +21,39 @@ class MainRepository
         $this->jobExperienceModel = $jobExperience;
     }
 
+
     public function getUser($id)
     {
         return $this->model->with('jobExperience.jobResponsibility', 'Education')->find($id);
     }
+
 
     public function create(array $attributes = [])
     {
         return $this->educationModel->create($attributes);
     }
 
+
     public function addJob(array $attributes = [])
     {
         return $this->jobExperienceModel->create($attributes);
     }
 
+
     public function removeJob($id) {
         return $this->jobExperienceModel->destroy($id);
     }
+
 
     public function removeSchool($id) {
         return $this->educationModel->destroy($id);
     }
 
-    public function updatePersonalData(array $attributes = []) {
-        return $this->model->fill($attributes);
+
+    public function updatePersonalData($data, $id) {
+
+        $user = User::findOrFail($id);
+
+        return $user->update($data);
     }
 }
