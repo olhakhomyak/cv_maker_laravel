@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        foreach (range(1, 10) as $index) {
+        foreach (range(3, 10) as $index) {
             User::create([
-               'name' => $faker->name,
+                'name' => $faker->name,
                 'email' => $faker->email,
                 'phone' => $faker->numberBetween(100000000, 999999999),
                 'resume' => $faker->realText($maxNbChars = 200, $indexSize = 2),

@@ -19,3 +19,14 @@ Route::resource('school/update', 'EducationController@store');
 Route::resource('school/destroy', 'EducationController@destroy');
 Route::resource('job/update', 'JobExperienceController@store');
 Route::resource('job/destroy', 'JobExperienceController@destroy');
+
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::group(['prefix' => 'api'], function()
+{
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+});
